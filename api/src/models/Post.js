@@ -8,6 +8,10 @@ const postSchema = mongoose.Schema({
     type: ObjectId,
     ref: 'User',
   },
+  parentPost: {
+    type: ObjectId,
+    ref: 'Post',
+  },
   replies: {
     type: [ ObjectId ],
     ref: 'Post',
@@ -17,13 +21,6 @@ const postSchema = mongoose.Schema({
   toJSON: {
     virtuals: true,
   }
-});
-
-postSchema.virtual('posts', {
-  ref: 'Post',
-  localField: '_id',
-  foreignField: 'replies',
-  justOne: false,
 });
 
 const Post = mongoose.model('Post', postSchema);

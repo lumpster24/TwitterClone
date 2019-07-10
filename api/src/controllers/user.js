@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 router.get('/profile',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    res.send(req.user.populate('posts'));    
+    res.send(req.user);    
   }
 );
 

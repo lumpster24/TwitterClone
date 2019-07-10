@@ -17,7 +17,7 @@ router.get('/:_id', async (req, res) => {
   const { _id } = req.params;
 
   try {
-    const post = await Post.findOne({ _id }).populate('user');
+    const post = await Post.findOne({ _id });
 
     if(post) {
       res.send(post);
@@ -66,12 +66,13 @@ router.post('/reply/:_id', createValidators, async (req, res) => {
       const childPost = new Post({
         message,
         user: req.user._id,
+        parentPost: parentPost._id
       });
       await childPost.save();
 
       parentPost.replies.push(childPost._id)
       parentPost.save()
-      res.sendStatus(200)
+      res.send(childPost)
     } else {
       res.sendStatus(404)
     }
