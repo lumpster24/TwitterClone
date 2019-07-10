@@ -1,12 +1,18 @@
 const mongoose = require('mongoose');
 const mongooseHidden = require('mongoose-hidden'); 
 
+const { ObjectId } = mongoose.Schema.Types;
+
 const userSchema = mongoose.Schema({
   email: String,
   passwordHash: {
     type: String,
     hideJSON: true
   },
+  following: {
+    type: [ ObjectId ],
+    ref: 'User'
+  }
 }, {
   timestamps: true,
   toJSON: {
