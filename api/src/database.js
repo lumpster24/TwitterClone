@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const connectDatabase = () => {
-  mongoose.connect('mongodb://localhost:27017/tweeter-dev', {
+  mongoose.connect('mongodb://localhost:27017/TwitterClone', {
     useCreateIndex: true,
     useNewUrlParser: true,
     useFindAndModify: false,
