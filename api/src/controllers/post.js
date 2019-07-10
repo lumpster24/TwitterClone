@@ -80,4 +80,25 @@ router.post('/reply/:_id', createValidators, async (req, res) => {
   }
 })
 
+router.delete('/:_id', jwtAuth, async (req, res) => {
+  const { _id } = req.params
+
+  try {
+    const post = await Post.findOne({ _id })
+
+    if(!post) {
+      return res.sendStatus(404)
+    }
+    
+    if(post.user.equals(req.user._id)) {
+      await post.delete()
+      return res.sendStatus(200)
+    } else {
+      return res.sendStatus(401)
+    }  
+  } catch (err) {
+    res.sendStatus(500)
+  }
+})
+
 module.exports = router;
