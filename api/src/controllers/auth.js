@@ -8,7 +8,7 @@ const User = require('../models/User');
 
 const router = Router();
 
-router.post('/sign-up', [
+router.post('/signup', [
   check(['email', 'password', 'passwordConfirm']).exists(),
 ], async (req, res) => {
   const errors = validationResult(req);
@@ -21,11 +21,11 @@ router.post('/sign-up', [
   const userExists = await User.findOne({ email });
 
   if(userExists) {
-    return res.status(400).send({error: 'user already exists'});
+    return res.status(400).send({error: 'User already exists'});
   }
 
   if(password !== passwordConfirm) {
-    res.status(400).send({error: 'passwords do not match'});
+    res.status(400).send({error: 'Passwords do not match'});
     return;
   }
 
@@ -40,7 +40,7 @@ router.post('/sign-up', [
     await user.save();
     res.send(user);
   } catch(error) {
-    res.status(400).send(error.message);
+    res.status(500).send(error.message);
   }
 });
 

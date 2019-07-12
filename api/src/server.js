@@ -1,5 +1,6 @@
 const express = require('express');
 const passport = require('passport');
+const cors = require('cors')
 
 const { connectDatabase } = require('./database');
 
@@ -15,6 +16,7 @@ require('./passport');
 
 app.use(express.json());
 app.use(passport.initialize());
+app.use(cors())
 
 app.use('/auth', AuthController);
 app.use('/user', UserController);
