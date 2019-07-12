@@ -1,11 +1,16 @@
-import React from 'react';
+import React from 'reactn';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 import './App.css';
+import Login from './pages/Login'
+import Signup from './pages/Signup'
 
 function App() {
   return (
-    <div>
-      Hello world
-    </div>
+    <Router>
+      <Route path="/" exact component={Login} />
+      <Route path="/signup" component={Signup} />
+    </Router>
   );
 }
 
