@@ -9,16 +9,16 @@ const User = require('../models/User');
 const router = Router();
 
 router.post('/signup', [
-  check(['email', 'password', 'passwordConfirm']).exists(),
+  check(['username', 'password', 'passwordConfirm']).exists(),
 ], async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(422).send({ errors: errors.array() });
   }
 
-  const { email, password, passwordConfirm } = req.body;
+  const { username, password, passwordConfirm } = req.body;
 
-  const userExists = await User.findOne({ email });
+  const userExists = await User.findOne({ username });
 
   if(userExists) {
     return res.status(400).send({error: 'User already exists'});
@@ -32,7 +32,7 @@ router.post('/signup', [
   const passwordHash = bcrypt.hashSync(password, 10);
 
   const user = new User({
-    email,
+    username,
     passwordHash,
   });
 
@@ -50,7 +50,7 @@ router.post('/login',
   (req, res) => {
     const token = jwt.sign(
       {
-        email: req.user.email,
+        username: req.user.username,
         _id: req.user._id,
       }, 
       'CHANGEMEPLEASE!',

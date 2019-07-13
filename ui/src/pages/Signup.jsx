@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios'
 
 const Signup = () => {
-  const [email, setEmail] = useState('')
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
   const [signupSuccess, setSignupSuccess] = useState(false)
@@ -17,7 +17,7 @@ const Signup = () => {
 
     try {
       await axios.post(`${baseUrl}/auth/signup`, {
-        email,
+        username,
         password,
         passwordConfirm
       })
@@ -38,9 +38,9 @@ const Signup = () => {
             <form onSubmit={onSubmit}>
               <input 
                 type='text' 
-                placeholder='Email...'
-                value={email} 
-                onChange={(evt) => setEmail(evt.target.value)} 
+                placeholder='Username...'
+                value={username} 
+                onChange={(evt) => setUsername(evt.target.value)} 
               />
               <input 
                 type='text' 

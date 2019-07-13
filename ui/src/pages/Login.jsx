@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios'
 
 const Login = () => {
-  const [email, setEmail] = useState('')
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [loginSuccess, setLoginSuccess] = useState(null)
   const [token, setToken] = useGlobal('token')
@@ -15,7 +15,7 @@ const Login = () => {
 
     try {
       const { data } = await axios.post(`${baseUrl}/auth/login`, {
-        email,
+        username,
         password
       })
 
@@ -34,9 +34,9 @@ const Login = () => {
       <form onSubmit={onSubmit}>
         <input 
           type='text' 
-          placeholder='Email...'
-          value={email} 
-          onChange={(evt) => setEmail(evt.target.value)} 
+          placeholder='Username...'
+          value={username} 
+          onChange={(evt) => setUsername(evt.target.value)} 
         />
         <input 
           type='text' 

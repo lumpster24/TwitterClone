@@ -4,7 +4,7 @@ const mongooseHidden = require('mongoose-hidden');
 const { ObjectId } = mongoose.Schema.Types;
 
 const userSchema = mongoose.Schema({
-  email: String,
+  username: String,
   passwordHash: {
     type: String,
     hideJSON: true

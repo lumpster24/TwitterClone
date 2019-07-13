@@ -25,12 +25,12 @@ const verifyPassword = (password, passwordHash = '') => {
 };
 
 passport.use(new LocalStrategy({
-    usernameField: 'email',
+    usernameField: 'username',
     session: false,
   },
-  async (email, password, done) => {
+  async (username, password, done) => {
     try {
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ username });
 
       if(!user) return done(null, false);
       if(!verifyPassword(password, user.passwordHash)) return done(null, false);
