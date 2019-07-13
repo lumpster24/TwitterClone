@@ -12,7 +12,6 @@ const Login = () => {
 
   const onSubmit = async (evt) => {
     evt.preventDefault()
-    setLoginSuccess(false)
 
     try {
       const { data } = await axios.post(`${baseUrl}/auth/login`, {
