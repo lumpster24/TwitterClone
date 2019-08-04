@@ -1,0 +1,19 @@
+.login-main-wrapper, .login-form-wrapper, .signup-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+input {
+  margin: 0.5rem 1rem;
+}
+
+.login-error {
+  color: red;
+  margin: 0.5rem;
+}

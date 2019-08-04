@@ -21,7 +21,7 @@ const Signup = () => {
         password,
         passwordConfirm
       })
-
+      
       alert('signup complete!')
       setErrorMessage(null)
       setSignupSuccess(true)
@@ -33,9 +33,10 @@ const Signup = () => {
   return (
     <>
       {!signupSuccess ? 
-        (<>
+        (<div>
+            <Link to="/">Back to Login</Link>
             <h2>Signup</h2>
-            <form onSubmit={onSubmit}>
+            <form className='signup-form-wrapper' onSubmit={onSubmit}>
               <input 
                 type='text' 
                 placeholder='Username...'
@@ -57,10 +58,7 @@ const Signup = () => {
               <input type="submit" value="Submit" />
             </form>
             { errorMessage === null ? null : <div>{errorMessage}</div>}
-            <div>
-              <Link to="/">Back to Login</Link>
-            </div>
-        </>) 
+        </div>) 
         : <Redirect to="/" />
       }
     </>

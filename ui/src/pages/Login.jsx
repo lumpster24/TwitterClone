@@ -29,31 +29,31 @@ const Login = () => {
   }
 
   return (
-    <>
+    <div>
       <h2>Login</h2>
-      <form onSubmit={onSubmit}>
-        <input 
-          type='text' 
-          placeholder='Username...'
-          value={username} 
-          onChange={(evt) => setUsername(evt.target.value)} 
-        />
-        <input 
-          type='text' 
-          placeholder='Password...'
-          value={password} 
-          onChange={(evt) => setPassword(evt.target.value)} 
-        />
-        <input type="submit" value="Submit" />
-      </form>
-      <div>
+      <div className='login-main-wrapper'>
+        <form className='login-form-wrapper' onSubmit={onSubmit}>
+          <input 
+            type='text' 
+            placeholder='Username...'
+            value={username} 
+            onChange={(evt) => setUsername(evt.target.value)} 
+          />
+          <input 
+            type='text' 
+            placeholder='Password...'
+            value={password} 
+            onChange={(evt) => setPassword(evt.target.value)} 
+          />
+          <input type="submit" value="Submit" />
+        </form>
+        { loginSuccess === null ? 
+          null : loginSuccess === true ?
+            <Redirect to="/home" /> 
+            : <div className='login-error'>Failed to login</div> }
         <Link to="/signup">Need an account?</Link>
       </div>
-    { loginSuccess === null ? 
-      null : loginSuccess === true ?
-        <Redirect to="/home" /> 
-        : <div>Failed to login</div> }
-    </>
+    </div>
   )
 }
 
